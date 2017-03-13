@@ -78,7 +78,7 @@ body{
   background: #f9f9f9;
 }
 #app {
-  padding-top: 10px;
+  /*padding-top: 10px;*/
   height: 100vh;
   width: 100vw;
 }

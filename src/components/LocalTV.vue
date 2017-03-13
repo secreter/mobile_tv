@@ -1,9 +1,28 @@
 <template>
   <div class="local-tv">
+    <div class="weui-tab">
+      <div class="weui-navbar">
+          <div 
+          :class="isIPv6?'':'weui-bar__item_on'"
+          @click="change2v4"
+          class="weui-navbar__item">
+              IPv4
+          </div>
+          <div 
+          :class="isIPv6?'weui-bar__item_on':''"
+          @click="change2v6"
+          class="weui-navbar__item">
+              IPv6
+          </div>
+      </div>
+      
+    </div>
+    <!-- height 50px -->
+    <div class="blank-bar"></div>
     <div class="weui-grids">
       <a 
       v-for="item in loaclTvList"
-      :href="item.href" 
+      :href="item.href+(isIPv6?'':'&v4=1')" 
       class="weui-grid">
           <div class="weui-grid__icon">
               <img :src="item.image" alt="">
@@ -20,209 +39,218 @@
 export default {
   data () {
     return {
+      isIPv6:false,
       loaclTvList:[
       {
         image:require('../assets/tvlogo/tv_hunan.png'),
-        href:'http://tv6.byr.cn/hls/hunanhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=hunanhd',
         name:'湖南'
       },
       {
         image:require('../assets/tvlogo/tv_zhejiang.png'),
-        href:'http://tv6.byr.cn/hls/zjhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=zjhd',
         name:'浙江'
       },
       {
         image:require('../assets/tvlogo/tv_jiangsu.png'),
-        href:'http://tv6.byr.cn/hls/jshd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=jshd',
         name:'江苏'
       },
       {
         image:require('../assets/tvlogo/tv_dongnan.png'),
-        href:'http://tv6.byr.cn/hls/dntv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=dntv',
         name:'东南'
       },
       {
         image:require('../assets/tvlogo/tv_anhui.png'),
-        href:'http://tv6.byr.cn/hls/ahhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=ahhd',
         name:'安徽'
       },
       {
         image:require('../assets/tvlogo/tv_dongfan.png'),
-        href:'http://tv6.byr.cn/hls/dfhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=dfhd',
         name:'东方'
       },
       {
         image:require('../assets/tvlogo/tv_liaoning.png'),
-        href:'http://tv6.byr.cn/hls/lnhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=lnhd',
         name:'辽宁'
       },
       {
         image:require('../assets/tvlogo/tv_heilongjiang.png'),
-        href:'http://tv6.byr.cn/hls/hljhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=hljhd',
         name:'黑龙江'
       },
       {
         image:require('../assets/tvlogo/tv_tianjin.png'),
-        href:'http://tv6.byr.cn/hls/tjhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=tjhd',
         name:'天津'
       },
       {
         image:require('../assets/tvlogo/tv_guangdong.png'),
-        href:'http://tv6.byr.cn/hls/gdhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=gdhd',
         name:'广东'
       },
       {
         image:require('../assets/tvlogo/tv_hubei.png'),
-        href:'http://tv6.byr.cn/hls/hbhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=hbhd',
         name:'湖北'
       },
       {
         image:require('../assets/tvlogo/tv_shandong.png'),
-        href:'http://tv6.byr.cn/hls/sdhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=sdhd',
         name:'山东'
       },
       {
         image:require('../assets/tvlogo/tv_chongqing.png'),
-        href:'http://tv6.byr.cn/hls/cqhd.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=cqhd',
         name:'重庆'
       },
       {
         image:require('../assets/tvlogo/tv_guangxi.png'),
-        href:'http://tv6.byr.cn/hls/gxtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=gxtv',
         name:'广西'
       },
       {
         image:require('../assets/tvlogo/tv_gangsu.png'),
-        href:'http://tv6.byr.cn/hls/gstv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=gstv',
         name:'甘肃'
       },
       {
         image:require('../assets/tvlogo/tv_guizhou.png'),
-        href:'http://tv6.byr.cn/hls/gztv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=gztv',
         name:'贵州'
       },
       {
         image:require('../assets/tvlogo/tv_henan.png'),
-        href:'http://tv6.byr.cn/hls/hntv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=hntv',
         name:'河南'
       },
       {
         image:require('../assets/tvlogo/tv_neimenggu.png'),
-        href:'http://tv6.byr.cn/hls/nmtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=nmtv',
         name:'内蒙古'
       },
       {
         image:require('../assets/tvlogo/tv_ningxia.png'),
-        href:'http://tv6.byr.cn/hls/nxtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=nxtv',
         name:'宁夏'
       },
       {
         image:require('../assets/tvlogo/tv_qinghai.png'),
-        href:'http://tv6.byr.cn/hls/qhtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=qhtv',
         name:'青海'
       },
       {
         image:require('../assets/tvlogo/tv_yunnan.png'),
-        href:'http://tv6.byr.cn/hls/yntv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=yntv',
         name:'云南'
       },
       {
         image:require('../assets/tvlogo/tv_xinjian.png'),
-        href:'http://tv6.byr.cn/hls/xjtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=xjtv',
         name:'新疆'
       },
       {
         image:require('../assets/tvlogo/tv_shanxi.png'),
-        href:'http://tv6.byr.cn/hls/sxtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=sxtv',
         name:'陕西'
       },
       {
         image:require('../assets/tvlogo/tv_shanxi_.png'),
-        href:'http://tv6.byr.cn/hls/sxrtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=sxrtv',
         name:'山西'
       },
       {
         image:require('../assets/tvlogo/tv_jining.png'),
-        href:'http://tv6.byr.cn/hls/jltv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=jltv',
         name:'吉林'
       },
       {
         image:require('../assets/tvlogo/tv_xiamen.png'),
-        href:'http://tv6.byr.cn/hls/xmtv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=xmtv',
         name:'厦门'
       },
       {
         image:require('../assets/tvlogo/tv_shenzhen.png'),
-        href:'http://tv6.byr.cn/hls/sztv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=sztv',
         name:'深圳'
       },
       {
         image:require('../assets/tvlogo/tv_xizan.jpg'),
-        href:'http://tv6.byr.cn/hls/xztv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=xztv',
         name:'西藏'
       },
       {
         image:require('../assets/tvlogo/tv_bintuan.png'),
-        href:'http://tv6.byr.cn/hls/bttv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=bttv',
         name:'兵团'
       },
       {
         image:require('../assets/tvlogo/tv_lvyou.png'),
-        href:'http://tv6.byr.cn/hls/lytv.m3u8',
+        href:'http://item.redream.cn/mobile_tv/play.php?station=lytv',
         name:'旅游'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京',
-        href:'http://tv6.byr.cn/hls/btv1.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv1'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京文艺',
-        href:'http://tv6.byr.cn/hls/btv2.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv2'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京科教',
-        href:'http://tv6.byr.cn/hls/btv3.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv3'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京影视',
-        href:'http://tv6.byr.cn/hls/btv4.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv4'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京财经',
-        href:'http://tv6.byr.cn/hls/btv5.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv5'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京体育',
-        href:'http://tv6.byr.cn/hls/btv6.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv6'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京生活',
-        href:'http://tv6.byr.cn/hls/btv7.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv7'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京青年',
-        href:'http://tv6.byr.cn/hls/btv8.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv8'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京新闻',
-        href:'http://tv6.byr.cn/hls/btv9.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv9'
       },
       {
         image:require('../assets/tvlogo/tv_default.png'),
         name:'北京少儿',
-        href:'http://tv6.byr.cn/hls/btv10.m3u8'
+        href:'http://item.redream.cn/mobile_tv/play.php?station=btv10'
       },
       ]
     }
+  },
+  methods:{
+    change2v4(){
+      this.isIPv6=false
+    },
+    change2v6(){
+      this.isIPv6=true
+    },
   }
 }
 </script>
@@ -230,8 +258,16 @@ export default {
 <style scoped>
   .local-tv{
     background: #f9f9f9 ;
+
+  }
+  .blank-bar{
+    height: 50px;
+    width: 100%;
   }
   .weui-grid{
     background: #fff;
+  }
+  .weui-bar__item_on{
+    border-bottom: solid 4px #1AAD16;
   }
 </style>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import LocalTV from '@/components/LocalTV'
 import ccTV from '@/components/ccTV'
 import More from '@/components/More'
+import Picture from '@/components/Picture'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/cctv',
       name: 'ccTV',
       component: ccTV
+    },
+    {
+      path: '/picture',
+      name: 'picture',
+      component: Picture
     },
     {
       path: '/more',

@@ -42,10 +42,10 @@ export default {
           imageActive:require('./assets/cctv_active.png'),
         },
         {
-          name:"龙门客栈",
-          href:"http://item.redream.cn/chat/#!/",
-          image:require('./assets/chat.png'),
-          imageActive:require('./assets/chat.png'),
+          name:"每日一图",
+          href:"#picture",
+          image:require('./assets/mood.png'),
+          imageActive:require('./assets/mood_active.png'),
         },
         {
           name:"更多",
